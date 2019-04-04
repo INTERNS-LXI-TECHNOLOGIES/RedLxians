@@ -1,4 +1,4 @@
-package com.redlxians.quiz.quizModel;
+package com.redlxians.quiz.quizmodel;
 
 public class QuizModel{
 	
