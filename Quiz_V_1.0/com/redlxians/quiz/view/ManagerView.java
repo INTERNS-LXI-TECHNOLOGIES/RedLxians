@@ -1,6 +1,7 @@
 package com.redlxians.quiz.view;
 
 import java.util.*;
+import com.redlxians.quiz.controller.ManagerController;
 /**
 *@author Mohammed Anish
 */
@@ -26,6 +27,6 @@ public class ManagerView{
 			manager.delete();
 			break;
 		}
-		
+
 	}
 }
