@@ -3,7 +3,7 @@ package com.redlxians.quiz.controller;
 import com.redlxians.quiz.view.ManagerView;
 public class LoginController
 {
-	
+
 	public boolean validation(String userName,String password)
 	{
 
