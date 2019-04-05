@@ -1,5 +1,6 @@
 package com.redlxians.quiz.view;
 import java.util.*;
+import com.redlxians.quiz.controller.LoginController;
 public class LoginView
 {
 	String userName;
