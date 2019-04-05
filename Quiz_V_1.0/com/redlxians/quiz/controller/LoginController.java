@@ -16,4 +16,15 @@ public class LoginController
 
 		return true;
 	}
+	public boolean QuizView(String userName,String paasword)
+	{
+		if(userName.equals("admin")&&password.equals("admin"))
+		{
+			QuizView  q = new QuizView();
+			q.display();
+			return false;
+		}
+
+		return true;
+	}
 }
