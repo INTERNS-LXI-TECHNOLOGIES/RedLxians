@@ -18,7 +18,7 @@ public class LoginController
 	}
 	public boolean QuizView(String userName,String paasword)
 	{
-		if(userName.equals("admin")&&password.equals("admin"))
+		if(userName.equals("user")&&password.equals("user"))
 		{
 			QuizView  q = new QuizView();
 			q.display();
