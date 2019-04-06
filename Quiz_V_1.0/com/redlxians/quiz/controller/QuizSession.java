@@ -6,17 +6,25 @@ import java.util.ArrayList;
 **/
 import java.util.*;
 import java.io.*;
+<<<<<<< HEAD
+=======
+import com.redlxians.quiz.model.*;
 public class QuizSession
 {
 	
-   ArrayList<Quiz> quizes = new ArrayList<Quiz>();
+   public ArrayList<Quiz> quizes = new ArrayList<Quiz>();
+>>>>>>> 26e78de889ef41d86552117d9b29661b98e10ee4
    public void creatingQuiz(){
      File file=new File("Quiz.csv");
      try{
      FileReader fR=new FileReader(file);
-  	 BufferedReader bR=new BufferedReader(fR);
-   	 String data;
-   		while((data = bR.readLine())!= null){
+<<<<<<< HEAD	 
+=======
+     BufferedReader bR=new BufferedReader(fR);
+       
+     String data;
+     while((data = bR.readLine())!=null){
+>>>>>>> 26e78de889ef41d86552117d9b29661b98e10ee4
    			String[] split = data.split(",");
    			Quiz quiz = new Quiz();
    			quiz.setQuestion(split[0]);
@@ -28,12 +36,15 @@ public class QuizSession
    			quiz.setAnswer(split[5]);
    			quizes.add(quiz);
    		}
+<<<<<<< HEAD
       }catch(FileNotFoundException e){
 
       }
       catch(IOException e){
         
       }
+=======
+>>>>>>> 26e78de889ef41d86552117d9b29661b98e10ee4
 	  }
 	
 }

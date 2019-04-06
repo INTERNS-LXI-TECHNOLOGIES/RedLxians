@@ -1,15 +1,19 @@
 package com.redlxians.quiz.controller;
 
 import java.io.*;
+<<<<<<< HEAD
 import java.util.*;
 import com.redlxians.quiz.model.Quiz;
 import com.redlxians.quiz.view.LoginView;
+=======
+>>>>>>> 26e78de889ef41d86552117d9b29661b98e10ee4
 /**
 *@author Mohammed Anish
 */
 public class ManagerController{
 
 	File f = new File("Quiz.csv");
+<<<<<<< HEAD
 	ArrayList<Quiz> quizes = new ArrayList<Quiz>();
 	static Scanner scan = new Scanner(System.in);
 
@@ -21,6 +25,8 @@ public class ManagerController{
 		catch(FileNotFoundException e){
 
 		}
+=======
+>>>>>>> 26e78de889ef41d86552117d9b29661b98e10ee4
 		System.out.println("create");
 	}
 	public ArrayList<Quiz> read(){
