@@ -6,11 +6,12 @@ package com.redlxians.quiz.view;
 import java.util.*;
 import com.redlxians.quiz.controller.*;
 import com.redlxians.quiz.model.*;
+import com.redlxians.quiz.view.*;
 public class QuizView{
 	
   public void display()
     {
-	int score=0,answer,ready=1;
+	int score=0,answer,ready;
     ArrayList<Integer > useranswers = new ArrayList<Integer>();
 	Scanner in = new Scanner(System.in);
     do{
@@ -31,7 +32,17 @@ public class QuizView{
           score=score+5;
           }
        }
-      System.out.print("Result = "+score+" out of "+(quizSession.quizes.size()*5));
+      System.out.print("Result = "+score+" out of "+(quizSession.quizes.size()*5)+"\n\nMenu\n1.Try again\n2.Main menu\n3.Stop\nSelect your choice:");
+      ready=in.nextInt();
+      if(ready==1)
+        ready=0;
+      else if(ready==2)
+        { 
+         LoginView lV=new LoginView();
+         lV.display();
+        }
+      else
+        ready=1;
       }
       else
       {
