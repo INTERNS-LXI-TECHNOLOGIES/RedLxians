@@ -7,7 +7,7 @@ public class Quiz
 	private String question;
 	private String answer;
 	private String [] option=new String[4];
-	public void setQuestion(question)
+	public void setQuestion(String question)
 	{
 		this.question=question;
 	}
@@ -15,7 +15,7 @@ public class Quiz
 	{
         return question;
 	}
-	public void setAnswer(answer)
+	public void setAnswer(String answer)
 	{
 		this.answer=answer;
 	}
