@@ -1,4 +1,5 @@
-package com.redlxians.quiz.view;
+package com.redlxians.quiz.controller;
+
 /**
 *@author AJAY E.S
 **/

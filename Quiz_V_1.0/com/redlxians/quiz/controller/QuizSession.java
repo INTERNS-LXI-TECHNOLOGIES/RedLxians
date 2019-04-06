@@ -1,20 +1,23 @@
 package com.redlxians.quiz.controller;
+import com.redlxians.quiz.model.Quiz;
+import java.util.ArrayList;
 /**
 *@author AJAY E.S
 **/
 import java.util.*;
 import java.io.*;
-public class QuizSesssion
+public class QuizSession
 {
 	
-   ArrayList<Quiz> quizes = new Arraylist<Quiz>();
+   ArrayList<Quiz> quizes = new ArrayList<Quiz>();
    public void creatingQuiz(){
      File file=new File("Quiz.csv");
+     try{
      FileReader fR=new FileReader(file);
   	 BufferedReader bR=new BufferedReader(fR);
    	 String data;
-   		while(data = bR.readLine()){
-   			String[] split = data.split(,);
+   		while((data = bR.readLine())!= null){
+   			String[] split = data.split(",");
    			Quiz quiz = new Quiz();
    			quiz.setQuestion(split[0]);
    			String[] options = new String[4];
@@ -25,6 +28,12 @@ public class QuizSesssion
    			quiz.setAnswer(split[5]);
    			quizes.add(quiz);
    		}
+      }catch(FileNotFoundException e){
+
+      }
+      catch(IOException e){
+        
+      }
 	  }
 	
 }

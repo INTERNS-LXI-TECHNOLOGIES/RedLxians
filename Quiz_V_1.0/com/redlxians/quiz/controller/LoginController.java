@@ -1,6 +1,6 @@
 package com.redlxians.quiz.controller;
 
-import com.redlxians.quiz.view.ManagerView;
+import com.redlxians.quiz.view.*;
 public class LoginController
 {
 
@@ -13,7 +13,12 @@ public class LoginController
 			m.managerOptions();
 			return false;
 		}
-		
+		else if(userName.equals("user")&&password.equals("user")){
+			//QuizView q = new QuizView();
+			//q.display();
+			return false;
+		}
+
 		return true;
 	}
 }
