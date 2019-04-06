@@ -1,0 +1,3 @@
+When dynamically allocated memory is lost to the C++ program then,Warning occurs,Memory leak occurs,The program executes successfully,None of the above,Memory leak occurs
+Which of the following exists in C++?,Virtual destructor,Virtual constructor,Both A and B,None of the Above,Virtual destructor
+Which of the following denote incorrect data type in C++?,Real,Double,Float,Int,Real

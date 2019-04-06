@@ -11,17 +11,35 @@ public class QuizView{
 	
   public void display()
     {
-	int score=0,answer,ready;
+	int score=0,answer,ready,quizType;
+    String quizFile=null;
     ArrayList<Integer > useranswers = new ArrayList<Integer>();
 	Scanner in = new Scanner(System.in);
     do{
+      do{
+        System.out.print("\n1.JAVA\n2.Python\n3.C++\nSelect the Quiz session: ");
+       quizType=in.nextInt();
+       switch(quizType)
+       {
+        case 1:quizFile="Quiz.csv";
+        break;
+        case 2:quizFile="Python.csv";
+        break;
+        case 3:quizFile="C++.csv";
+        break;
+        default:quizFile=null;
+        break;
+       }
+      }while(quizFile.equals(null));
+
     System.out.print("Press 1 to start the Quiz program: ");
     ready=in.nextInt();
     System.out.println("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     if(ready==1)
       {
+        score=0;
       QuizSession quizSession=new QuizSession();
-      quizSession.creatingQuiz();
+      quizSession.creatingQuiz(quizFile);
       for(int i=0;i<quizSession.quizes.size();i++)
        {
         System.out.print("\tQuestion"+(i+1)+"\n\t"+quizSession.quizes.get(i).getQuestion()+"\n\t\t1. "+quizSession.quizes.get(i).getOption()[0]+"\n\t\t2. "+quizSession.quizes.get(i).getOption()[1]+"\n\t\t3. "+quizSession.quizes.get(i).getOption()[2]+"\n\t\t4. "+quizSession.quizes.get(i).getOption()[3]+"\n\nAnswer:");

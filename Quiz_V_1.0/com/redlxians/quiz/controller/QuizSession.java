@@ -11,8 +11,8 @@ public class QuizSession
 {
 	
    public ArrayList<Quiz> quizes = new ArrayList<Quiz>();
-   public void creatingQuiz(){
-     File file=new File("Quiz.csv");
+   public void creatingQuiz(String quizFile){
+     File file=new File(quizFile);
      try{
      FileReader fR=new FileReader(file);
      BufferedReader bR=new BufferedReader(fR);
