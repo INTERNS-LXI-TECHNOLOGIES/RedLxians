@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.*;
 import com.redlxians.quiz.model.Quiz;
 import com.redlxians.quiz.view.LoginView;
+import com.redlxians.quiz.view.ManagerView;
 
 /**
 *@author Mohammed Anish
@@ -85,11 +86,14 @@ public class ManagerController{
 				quizes.get(select-1).setAnswer(scan.next());
 			}
 			write();
-			System.out.println("1.Update More\n2.Main Menu\nPress any key to exit");
+			System.out.println("1.Update More\n2.Main Menu\n3.Admin menu\nPress any key to exit");
 			opt = scan.nextInt();
 			if(opt==2){
 				LoginView l = new LoginView();
 				l.display();
+			}
+			else if(opt==3){
+				new ManagerView().managerOptions();
 			}
 		}while(opt == 1);
 		
@@ -101,11 +105,14 @@ public class ManagerController{
 			int select = scan.nextInt();
 			quizes.remove(select-1);
 			write();
-			System.out.println("1.Delete More\n2.Main Menu\nPress any key to exit");
+			System.out.println("1.Delete More\n2.Main Menu\n3.Admin menu\nPress any key to exit");
 			opt = scan.nextInt();
 			if(opt==2){
 				LoginView l = new LoginView();
 				l.display();
+			}
+			else if(opt==3){
+				new ManagerView().managerOptions();
 			}
 		}while(opt == 1);
 
@@ -135,11 +142,14 @@ public class ManagerController{
 			quiz.setAnswer(scan.next());
 			quizes.add(quiz);
 			write();
-			System.out.println("1.Add More\n2.Main Menu\nPress any key to exit");
+			System.out.println("1.Add More\n2.Main Menu\n3.Admin menu\nPress any key to exit");
 			opt = scan.nextInt();
 			if(opt==2){
 				LoginView l = new LoginView();
 				l.display();
+			}
+			else if(opt==3){
+				new ManagerView().managerOptions();
 			}
 		}while(opt == 1);
 
@@ -152,7 +162,6 @@ public class ManagerController{
 			bw = new BufferedWriter(fw);
 			for(int i=0;i<quizes.size();i++){
 			bw.write(quizes.get(i).toString());
-
 			}
 		bw.close();
 		}
