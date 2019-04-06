@@ -14,8 +14,8 @@ public class LoginController
 			return false;
 		}
 		else if(userName.equals("user")&&password.equals("user")){
-			//QuizView q = new QuizView();
-			//q.display();
+			QuizView q = new QuizView();
+			q.display();
 			return false;
 		}
 
