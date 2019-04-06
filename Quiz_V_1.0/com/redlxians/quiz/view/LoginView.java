@@ -1,4 +1,7 @@
 package com.redlxians.quiz.view;
+/**
+*@author Sanjana P
+*/
 import java.util.*;
 import com.redlxians.quiz.controller.LoginController;
 public class LoginView

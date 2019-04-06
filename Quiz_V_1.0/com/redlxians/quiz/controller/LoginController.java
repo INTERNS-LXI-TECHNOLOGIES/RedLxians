@@ -1,5 +1,7 @@
 package com.redlxians.quiz.controller;
-
+/**
+*@author Sanjana P
+*/
 import com.redlxians.quiz.view.*;
 import java.util.*;
 import java.io.*; 
