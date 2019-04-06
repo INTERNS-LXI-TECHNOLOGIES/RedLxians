@@ -1,5 +1,7 @@
 package com.redlxians.quiz.controller;
 
+import com.redlxians.quiz.view.*;
+
 public class LoginController
 {
 
