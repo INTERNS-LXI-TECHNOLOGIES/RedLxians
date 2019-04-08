@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.*;
 import java.io.*;
 import com.redlxians.quiz.model.*;
+
 public class QuizSession
 {
-	
+	 File file;
    public ArrayList<Quiz> quizes = new ArrayList<Quiz>();
-   public void creatingQuiz(String quizFile){
-     File file=new File(quizFile);
+   public void creatingQuiz(){
+     
+
      try{
      FileReader fR=new FileReader(file);
      BufferedReader bR=new BufferedReader(fR);
@@ -38,5 +40,15 @@ public class QuizSession
       }
       
 	  }
+    public void getQuiz(int selectedQuiz){
+      Properties p = new Properties();
+    try{
+      p.load(new FileReader("QuizSession.properties"));
+    }
+    catch(Exception e){
+
+    }
+    file = new File(p.getProperty("filename"+selectedQuiz));
+    }
 	
 }
