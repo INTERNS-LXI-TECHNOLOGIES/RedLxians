@@ -82,14 +82,9 @@ public class ManagerController{
      	return quizes;
 
 	}
-	public void update(){
+	public void update(int select,int temp){
 		int opt = 0;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		do{
-			System.out.println("\nSelect from above");
-			int select = scan.nextInt();
-			System.out.println("\nSelet which Part to edit\n 1.Question\n 2.Options\n 3.Answer");
-			int temp = scan.nextInt();
 			switch(temp){
 				case 1:
 				System.out.println("Enter new Question");
@@ -114,26 +109,16 @@ public class ManagerController{
 				quizes.get(select-1).setAnswer(scan.next());
 			}
 			write();
-			System.out.println("1.Update More\nPress any key to exit");
-		}while(opt == 1);
+			quizes.clear();
+			
 		
 	}
-	public void delete(){
-		int opt = 0;
-		do{
-			System.out.println("\nSelect from above");
-			int select = scan.nextInt();
+	public void delete(int select){
 			quizes.remove(select-1);
 			write();
-			System.out.println("1.Delete More\nPress any key to exit");
-			opt = scan.nextInt();
-		}while(opt == 1);
-
 	}
 	public void add(){
-		read();
-		int opt;
-		do{
+			read();
 			String[] options = new String[4];
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			Quiz quiz = new Quiz();
@@ -155,9 +140,7 @@ public class ManagerController{
 			quiz.setAnswer(scan.next());
 			quizes.add(quiz);
 			write();
-			System.out.println("1.Add More\nPress any key to exit");
-			opt = scan.nextInt();
-		}while(opt == 1);
+			quizes.clear();
 
 	}
 	public void write(){

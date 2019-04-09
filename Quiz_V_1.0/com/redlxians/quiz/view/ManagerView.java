@@ -26,16 +26,31 @@ public class ManagerView{
 				readView();
 				break;
 				case 3:
-				quizSelectionView();
-				readView();
-				manager.update();
+				
+				int opt = 0;
+				do{
+					quizSelectionView();
+					readView();
+					System.out.println("\nSelect from above");
+					int select = scan.nextInt();
+					System.out.println("\nSelet which Part to edit\n 1.Question\n 2.Options\n 3.Answer");
+					int section = scan.nextInt();
+					manager.update(select,section);
+					System.out.println("1.Update More\nPress any key to exit");
+					opt = scan.nextInt();
+				}while(opt == 1);
 				break;
 				case 4:
 				deleteMenu();
 				break;
 				case 5:
-				quizSelectionView();
-				manager.add();
+				int opt2 = 0;
+				do{
+					quizSelectionView();
+					manager.add();
+					System.out.println("1.Add More\nPress any key to exit");
+					opt2 = scan.nextInt();
+				}while(opt2 == 1);
 				default:
 				LoginView l = new LoginView();
 				l.display();
@@ -80,10 +95,19 @@ public class ManagerView{
 	public void deleteMenu(){
 		System.out.println("1.Delete QuizSession\n2.Delete Quiz");
 		int temp = scan.nextInt();
+		int opt=0;
 		if(temp==2){
-			quizSelectionView();
-			readView();
-			manager.delete();
+			
+			do{
+				quizSelectionView();
+				readView();
+				System.out.println("\nSelect from above");
+				int select = scan.nextInt();
+				manager.delete(select);
+				System.out.println("1.Delete More\nPress any key to exit");
+				opt = scan.nextInt();
+				manager.getQuizes().clear();
+			}while(opt == 1);
 			System.out.println("Quiz deletion Sucsess");
 		}
 		else if(temp==1){

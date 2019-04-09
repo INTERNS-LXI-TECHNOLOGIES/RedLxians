@@ -1,3 +1,2 @@
-Which of these class contains the methods used to write in a file?,FileStream,FileInputStream,BufferedOutputStream,FileBufferStream,FileInputStream
 Which of these values is returned by read() method is end of file (EOF) is encountered?,0,1,-1,Null,-1
 Which of these exception is thrown by close() and read() methods?,IOException, FileException,FileNotFoundException,FileInputOutputException,IOException
