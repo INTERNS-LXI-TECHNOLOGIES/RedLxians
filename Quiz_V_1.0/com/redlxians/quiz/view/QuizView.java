@@ -11,16 +11,26 @@ public class QuizView{
 	
   public void display()
     {
-	int score=0,answer,ready;
+      QuizSession quizSession=new QuizSession();
+      ManagerController m = new ManagerController();
+	int score=0,answer,ready,quizType;
+    String quizFile=null;
     ArrayList<Integer > useranswers = new ArrayList<Integer>();
 	Scanner in = new Scanner(System.in);
     do{
+      System.out.println("Select Quiz From Below\n");
+    List<String> quizSessions = m.getQuizSession();
+    for(int i = 0;i<quizSessions.size();i++){
+      System.out.println((i+1)+"."+quizSessions.get(i));
+    }
+    int temp = in.nextInt();
+    quizSession.getQuiz(temp);
     System.out.print("Press 1 to start the Quiz program: ");
     ready=in.nextInt();
     System.out.println("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     if(ready==1)
       {
-      QuizSession quizSession=new QuizSession();
+        score=0;
       quizSession.creatingQuiz();
       for(int i=0;i<quizSession.quizes.size();i++)
        {
