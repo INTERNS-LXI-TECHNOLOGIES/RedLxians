@@ -12,20 +12,48 @@ import com.redlxians.quiz.view.ManagerView;
 */
 public class ManagerController{
 
-	File f = new File("Quiz.csv");
-	ArrayList<Quiz> quizes = new ArrayList<Quiz>();
+
+	File f;
+	private ArrayList<Quiz> quizes = new ArrayList<Quiz>();
 	static Scanner scan = new Scanner(System.in);
 
-	public void create(){
+	public ArrayList<Quiz> getQuizes(){
+		return quizes;
+	}
+	public void quizSelection(int selectedQuiz){
+		Properties p = new Properties();
 		try{
-		FileReader fr = new FileReader(f);
-		BufferedReader br = new BufferedReader(fr);
+			p.load(new FileReader("QuizSession.properties"));
 		}
-		catch(FileNotFoundException e){
+		catch(Exception e){
+
+		}
+		f = new File(p.getProperty("filename"+selectedQuiz));
+	}
+	public void create(String fileName){
+		int count = 0;
+		File f = new File("QuizSession.properties");
+		try{
+			FileReader fr = new FileReader(f);
+			BufferedReader br = new BufferedReader(fr);
+			while(br.readLine()!= null){
+				count++;
+			}
+		}catch(IOException e){
+
+		}
+		Properties p = new Properties();
+		p.setProperty("quizname"+((count-2)/2+1),fileName);
+		p.setProperty("filename"+((count-2)/2+1),fileName+".csv");
+		try{
+			p.store(new FileWriter(f,true),"");
+			File file = new File(fileName+".csv");
+			file.createNewFile();
+			deleteQuizSession(100);
+		}catch(IOException e){
 
 		}
 
-		System.out.println("create");
 	}
 	public ArrayList<Quiz> read(){
 		
@@ -34,16 +62,16 @@ public class ManagerController{
 			FileReader fR = new FileReader(f);
 			BufferedReader bR = new BufferedReader(fR);
 			while((data = bR.readLine())!= null){
-   			String[] split = data.split(",");
-   			Quiz quiz = new Quiz();
-   			quiz.setQuestion(split[0]);
-   			String[] options = new String[4];
-   			for(int i=0;i<4;i++){
-   				options[i] = split[i+1];
-   			   }
-   			quiz.setOption(options);
-   			quiz.setAnswer(split[5]);
-   			quizes.add(quiz);
+	   			String[] split = data.split(",");
+	   			Quiz quiz = new Quiz();
+	   			quiz.setQuestion(split[0]);
+	   			String[] options = new String[4];
+	   			for(int i=0;i<4;i++){
+	   				options[i] = split[i+1];
+	   			}
+	   			quiz.setOption(options);
+	   			quiz.setAnswer(split[5]);
+	   			quizes.add(quiz);
    			}
    		}catch(FileNotFoundException e){
 
@@ -54,14 +82,9 @@ public class ManagerController{
      	return quizes;
 
 	}
-	public void update(){
+	public void update(int select,int temp){
 		int opt = 0;
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		do{
-			System.out.println("\nSelect from above");
-			int select = scan.nextInt();
-			System.out.println("\nSelet which Part to edit\n 1.Question\n 2.Options\n 3.Answer");
-			int temp = scan.nextInt();
 			switch(temp){
 				case 1:
 				System.out.println("Enter new Question");
@@ -86,41 +109,16 @@ public class ManagerController{
 				quizes.get(select-1).setAnswer(scan.next());
 			}
 			write();
-			System.out.println("1.Update More\n2.Main Menu\n3.Admin menu\nPress any key to exit");
-			opt = scan.nextInt();
-			if(opt==2){
-				LoginView l = new LoginView();
-				l.display();
-			}
-			else if(opt==3){
-				new ManagerView().managerOptions();
-			}
-		}while(opt == 1);
+			quizes.clear();
+			
 		
 	}
-	public void delete(){
-		int opt = 0;
-		do{
-			System.out.println("\nSelect from above");
-			int select = scan.nextInt();
+	public void delete(int select){
 			quizes.remove(select-1);
 			write();
-			System.out.println("1.Delete More\n2.Main Menu\n3.Admin menu\nPress any key to exit");
-			opt = scan.nextInt();
-			if(opt==2){
-				LoginView l = new LoginView();
-				l.display();
-			}
-			else if(opt==3){
-				new ManagerView().managerOptions();
-			}
-		}while(opt == 1);
-
 	}
 	public void add(){
-		read();
-		int opt;
-		do{
+			read();
 			String[] options = new String[4];
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			Quiz quiz = new Quiz();
@@ -142,16 +140,7 @@ public class ManagerController{
 			quiz.setAnswer(scan.next());
 			quizes.add(quiz);
 			write();
-			System.out.println("1.Add More\n2.Main Menu\n3.Admin menu\nPress any key to exit");
-			opt = scan.nextInt();
-			if(opt==2){
-				LoginView l = new LoginView();
-				l.display();
-			}
-			else if(opt==3){
-				new ManagerView().managerOptions();
-			}
-		}while(opt == 1);
+			quizes.clear();
 
 	}
 	public void write(){
@@ -167,6 +156,43 @@ public class ManagerController{
 		}
 		catch(IOException e){
 
+		}
+	}
+	public List<String> getQuizSession(){
+		Properties p = new Properties();
+		List<String> quizSessions = new ArrayList<String>();
+		try{
+			p.load(new FileReader("QuizSession.properties"));
+		}catch(Exception e){
+
+		}
+		for(int i = 1;i<11;i++){
+			if(p.getProperty("quizname"+i) != null){
+				quizSessions.add(p.getProperty("quizname"+i));
+			}
+		}
+		return quizSessions;
+	}
+	public void deleteQuizSession(int selectedQuiz){
+		File file = new File("QuizSession.properties");
+		Properties p = new Properties();
+		try{
+			p.load(new FileReader("QuizSession.properties"));
+		}
+		catch(Exception e){
+
+		}
+		String fileName = p.getProperty("filename"+selectedQuiz);
+		p.remove("filename"+selectedQuiz);
+		p.remove("quizname"+selectedQuiz);
+		try{
+			p.store(new FileWriter(file),"");
+		}catch(IOException e){
+
+		}
+		if(selectedQuiz!=100){
+			File removeFile = new File(fileName);
+			removeFile.delete();
 		}
 	}
 } 

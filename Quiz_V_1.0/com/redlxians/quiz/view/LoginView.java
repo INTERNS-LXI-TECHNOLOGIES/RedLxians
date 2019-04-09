@@ -24,14 +24,16 @@ public class LoginView
 	public void login()
 	{
 
-		boolean validate;
+		boolean validate = false;
 		int input = 0;
 		do{
 			System.out.println("Enter the email id of user: ");
 			emailid=in.next();
 			System.out.println("Enter the password: ");
 			password=in.next();
+
 			validate = loginController.validation(emailid,password);
+
 			if(validate){
 				System.out.println("Invalid User\n Press 1 to Try Again");
 				input = in.nextInt();
