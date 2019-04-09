@@ -3,12 +3,18 @@ package com.redlxians.quiz.controller;
 *@author Sanjana P
 */
 import com.redlxians.quiz.view.*;
+import com.redlxians.quiz.model.*;
 import java.util.*;
 import java.io.*; 
 import java.util.regex.Pattern;  
 import java.util.regex.Matcher;
 public class LoginController
-{
+{	
+	//ArrayList<User> users = new ArrayList<User>();
+
+	public LoginController(){
+
+	}
 
 	public boolean validation(String emailid,String password)
 	{
@@ -19,7 +25,6 @@ public class LoginController
       
     	Properties p=new Properties();  
     	p.load(reader);   
-		
 		for(int i=0;i<(count/4);i++){ 
 			if(emailid.equals(p.getProperty("email"+i))){
 				if(password.equals(p.getProperty("password"+i))){
@@ -28,18 +33,15 @@ public class LoginController
 					return false;
 				}
 			}
+
+			else if(emailid.equals(p.getProperty("memailid"))&&password.equals(p.getProperty("mpassword"))){
+				ManagerView  m = new ManagerView();
+				m.managerOptions();
+				return false;
+			}
 			else{
 				return true;
 			}
-		}
-		if(emailid.equals(p.getProperty("Manager mailid"))&&password.equals(p.getProperty("Manager password")))
-		{
-			ManagerView  m = new ManagerView();
-			m.managerOptions();
-			return false;
-		}
-		else{
-			return false;
 		}
 
 		}
