@@ -95,7 +95,7 @@ public class LoginController
 	            {    
 	                System.out.println("Entered email is illegal try again.");
 	                LoginView login=new LoginView();
-	                login.register();
+	                login.register(); 
 	                return true;
 	            }
 	        }

@@ -43,8 +43,12 @@ public class LoginView
 				System.out.println("Invalid User\nGo to previous menu press 1");
 				input = in.nextInt();
 				display();
+				input = 0;
+				validate = false;
 			}
+
 		}while(input==1);
+
 
 	}
 	public void register(){
@@ -57,6 +61,7 @@ public class LoginView
 
 	public void exit(){
 		System.out.println("Thank you...");
+
 	}
 
 }
