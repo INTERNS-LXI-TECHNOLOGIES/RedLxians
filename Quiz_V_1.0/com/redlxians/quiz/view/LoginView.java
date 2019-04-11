@@ -12,7 +12,8 @@ public class LoginView
 	static Scanner in=new Scanner(System.in);
 	LoginController loginController = new LoginController();
 	public void display(){
-		System.out.println("1.Login\n2.Register");
+		System.out.println("Enter your choice:");
+		System.out.println("1.Login\n2.Register\n3.Exit");
 		int a = in.nextInt();
 		if(a==1){
 			login();
@@ -20,7 +21,11 @@ public class LoginView
 		else if(a==2){
 			register();
 		}
+		else if(a==3){
+			exit();
+		}
 	}
+
 	public void login()
 	{
 
@@ -35,8 +40,9 @@ public class LoginView
 			validate = loginController.validation(emailid,password);
 
 			if(validate){
-				System.out.println("Invalid User\n Press 1 to Try Again");
+				System.out.println("Invalid User\nGo to previous menu press 1");
 				input = in.nextInt();
+				display();
 			}
 		}while(input==1);
 
@@ -47,6 +53,10 @@ public class LoginView
 		System.out.println("Enter Password");
 		String pass = in.next();
 		loginController.registerValidation(email,pass);
+	}
+
+	public void exit(){
+		System.out.println("Thank you...");
 	}
 
 }

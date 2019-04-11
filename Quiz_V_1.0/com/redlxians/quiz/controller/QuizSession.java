@@ -10,9 +10,9 @@ import com.redlxians.quiz.model.*;
 
 public class QuizSession
 {
-	 File file;
-   public ArrayList<Quiz> quizes = new ArrayList<Quiz>();
-   public void creatingQuiz(){
+	  File file;
+    public ArrayList<Quiz> quizes = new ArrayList<Quiz>();
+    public void creatingQuiz(){
      
 
      try{

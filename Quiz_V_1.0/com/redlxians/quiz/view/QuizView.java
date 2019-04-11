@@ -18,7 +18,7 @@ public class QuizView{
       ArrayList<Integer > useranswers = new ArrayList<Integer>();
 	    Scanner in = new Scanner(System.in);
       do{
-        System.out.println("Select Quiz From Below\n");
+        System.out.println("\nSelect Quiz From Below\n");
         List<String> quizSessions = m.getQuizSession();
         for(int i = 0;i<quizSessions.size();i++){
           System.out.println((i+1)+"."+quizSessions.get(i));

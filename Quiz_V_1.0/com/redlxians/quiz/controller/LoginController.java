@@ -10,43 +10,64 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 public class LoginController
 {	
-	//ArrayList<User> users = new ArrayList<User>();
-
-	public LoginController(){
-
+	ArrayList<User> users = new ArrayList<User>();
+  	User admin = new User();
+	public LoginController(){  
+     try{
+     int count=count(); 
+     FileReader reader=new FileReader("db.properties");
+     Properties p=new Properties();  
+     p.load(reader);
+   			
+   			for(int i=0;i<(count/4);i++){
+   				User user = new User();
+   				user.setEmail(p.getProperty("email"+i));
+   				user.setPassword(p.getProperty("password"+i));
+   				users.add(user);
+   				//System.out.println(users.get(i).getEmail());
+   				//System.out.println(users.get(i).getPassword());
+   			}
+   				
+   				admin.setEmail(p.getProperty("memailid"));
+   				admin.setPassword(p.getProperty("mpassword"));
+   				users.add(admin); 
+   	     }
+      catch(FileNotFoundException e){}
+      catch(IOException e){}
 	}
 
 	public boolean validation(String emailid,String password)
 	{
+
 		try{
 		int count=count();
-		System.out.println(count);
+		
 		FileReader reader=new FileReader("db.properties");  
-      
-    	Properties p=new Properties();  
+    	Properties p=new Properties();    
     	p.load(reader);   
-		for(int i=0;i<(count/4);i++){ 
-			if(emailid.equals(p.getProperty("email"+i))){
-				if(password.equals(p.getProperty("password"+i))){
+		for(int i=0;i<users.size();i++){ 
+			
+			if(emailid.equals(users.get(i).getEmail())){
+				if(password.equals(users.get(i).getPassword())){
+					System.out.println("sucessfully logged in");
 					QuizView q = new QuizView();
 					q.display();
+
 					return false;
 				}
 			}
-
-			else if(emailid.equals(p.getProperty("memailid"))&&password.equals(p.getProperty("mpassword"))){
+            
+			else if(emailid.equals(admin.getEmail()) && password.equals(admin.getPassword())){
+				System.out.println("sucessfully logged in");
 				ManagerView  m = new ManagerView();
 				m.managerOptions();
 				return false;
-			}
-			else{
-				return true;
 			}
 		}
 
 		}
 		catch(IOException e){
-
+ 
 		}
 		return true;
 		
@@ -64,13 +85,15 @@ public class LoginController
 	            	Properties p=new Properties();  
 					p.setProperty("email"+(count/4),matcher.group());
 					p.setProperty("password"+(count/4),pass);  
-	  				
-					p.store(new FileWriter("db.properties",true),"");    
+					p.store(new FileWriter("db.properties",true),""); 
+					System.out.println("Registration is sucessfull");
+	  				LoginView login=new LoginView();
+	                login.display();   
 	                return true;    
 	            }  
 	            else
 	            {    
-	                System.out.println("Entered email pattern is illegal try again.");
+	                System.out.println("Entered email is illegal try again.");
 	                LoginView login=new LoginView();
 	                login.register();
 	                return true;

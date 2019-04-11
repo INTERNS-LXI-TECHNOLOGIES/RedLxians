@@ -2,22 +2,22 @@ package com.redlxians.quiz.model;
 /**
 *@author AJAY E.S
 **/
-class User
+public class User
 {
     private String email;
     private String password;
-    public void setEmail(email){
+    public void setEmail(String email){
     this.email=email;	
     }
-    public void getEmail()
+    public String getEmail()
     {
     	return email;
 
     }
-    public void setPassword(password){
+    public void setPassword(String password){
     this.password=password;	
     }
-    public void getPassword()
+    public String getPassword()
     {
     	return password;
     	
