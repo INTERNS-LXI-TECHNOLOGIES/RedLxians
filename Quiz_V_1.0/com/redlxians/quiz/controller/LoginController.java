@@ -78,11 +78,25 @@ public class LoginController
 	        
 				int count=count();
 	            Pattern pattern = Pattern.compile("\\w+@\\w+\\.[a-z]{2,3}");    
-	            Matcher matcher = pattern.matcher(email);     
-	            if (matcher.find()==true) 
-	            {   
+	            Matcher matcher = pattern.matcher(email);
 
-	            	Properties p=new Properties();  
+	            FileReader reader=new FileReader("db.properties");  
+    			Properties p=new Properties();    
+    			p.load(reader);   
+				
+	            if(matcher.find()==true) 
+	            {   
+	            	for(int i=0;i<users.size();i++){ 
+			
+				 	if(email.equals(users.get(i).getEmail())){ 
+					System.out.println("this user already exist");
+					System.out.println("Try again");
+					LoginView login=new LoginView();
+					login.display();
+					return true;
+				}  
+				}
+	            	  
 					p.setProperty("email"+(count/4),matcher.group());
 					p.setProperty("password"+(count/4),pass);  
 					p.store(new FileWriter("db.properties",true),""); 
@@ -109,7 +123,7 @@ public class LoginController
 	public int count()
 	{
 		int count=0;
-	try{
+	try{  
 		FileReader reader=new FileReader(new File("db.properties"));  
          
   	 BufferedReader bR=new BufferedReader(reader);
